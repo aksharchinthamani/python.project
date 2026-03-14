@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>esyPay</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="login.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"> 
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div id="splash" style="
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(-45deg, #6366f1, #7c3aed, #06b6d4, #10b981);
+  background-size: 400% 400%;
+  animation: bgMove 12s ease infinite;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  z-index: 9999;
+  transition: opacity 0.9s ease-out;   /* ← longer & smoother */
+  opacity: 1;
+">
+  <div style="
+    font-size: 5.5rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    text-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    view-transition-name: esypay-title;
+  ">esyPay</div>
+  <div style="margin-top:1rem; font-size:1.3rem; opacity:0.9;">
+    Convert • Pay • Instantly
+  </div>
+</div>
+
+<script>
+// Improved fade-out only (no scale)
+setTimeout(() => {
+  const splash = document.getElementById('splash');
+  splash.style.opacity = '0';
+  
+  // Remove from DOM after transition ends
+  setTimeout(() => {
+    splash.style.display = 'none';
+    // Optional: splash.remove();  // cleaner if you don't need it anymore
+  }, 950);   // slightly longer than transition duration
+}, 1400);     // was 1300 – feel free to adjust (1600–2000 also looks nice)
+</script>
+  <!-- below main -->
+  <div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="login-card">
+      <div class="card-header-custom text-center">
+        <h2 style="view-transition-name: esypay-title;">esyPay</h2>
+        <p>Login or Sign Up</p>
+      </div>
+
+      <div class="card-body-custom">
+        <div class="mb-3">
+          <label for="username" class="form-label">Email</label>
+          <input type="email" id="username" class="form-control" placeholder="Enter email">
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" id="password" class="form-control" placeholder="Enter password">
+        </div>
+        
+        <button class="signinButton" onclick="signup()">Sign Up</button>
+        <button class="loginButton" onclick="next()">next</button>
+        <p class="text-center mt-2 mb-2">or</p>
+<button class="loginButton" onclick="navigateWithTransition('log.html')">Login</button>
+        <p id="error" class="error-text text-center mt-3"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="login.js"></script>
+  <script src="transitions.js"></script>
+</body>
+</html>+

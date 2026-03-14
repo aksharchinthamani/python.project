@@ -1,0 +1,156 @@
+.transaction-item{
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(8px);
+  border-left: 4px solid #10b981;
+
+  padding: 1rem 1.1rem;
+  margin-bottom: .9rem;
+  border-radius: 12px;
+
+  box-shadow:
+  0 6px 18px rgba(0,0,0,0.08),
+  0 0 10px rgba(16,185,129,0.08);
+
+  transition: all .25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle highlight sweep */
+
+.transaction-item::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.5),
+    transparent
+  );
+}
+
+.transaction-item:hover::before{
+  animation:shine 1s;
+}
+
+/* hover effect */
+
+.transaction-item:hover{
+  transform: translateY(-3px) translateX(5px);
+  box-shadow:
+  0 12px 28px rgba(0,0,0,0.15),
+  0 0 12px rgba(16,185,129,0.15);
+}
+
+/* transaction id */
+
+.item-id{
+  font-family:'Courier New',monospace;
+  font-size:.8rem;
+  color:#6b7280;
+  margin-bottom:.35rem;
+  letter-spacing:.3px;
+}
+
+/* amount */
+
+.item-amount{
+  color:#111827;
+  font-size:1.08rem;
+  font-weight:700;
+}
+
+/* shine animation */
+
+@keyframes shine{
+  100%{
+    left:120%;
+  }
+}
+
+/* === PAGE TRANSITIONS === */
+
+@view-transition{
+  navigation:auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root){
+  animation-duration:.48s;
+  animation-timing-function:ease-in-out;
+}
+
+::view-transition-old(root){
+  animation-name:page-out;
+}
+
+::view-transition-new(root){
+  animation-name:page-in;
+}
+
+@keyframes page-out{
+  from{opacity:1; transform:scale(1)}
+  to{opacity:0; transform:scale(.96)}
+}
+
+@keyframes page-in{
+  from{opacity:0; transform:scale(1.04)}
+  to{opacity:1; transform:scale(1)}
+}
+/* ───────────────────────────────────────────────
+   Download button styles
+─────────────────────────────────────────────── */
+
+.transaction-item {
+    position: relative;
+    padding-right: 5.5rem;          /* space for download button */
+    padding-left: 1.1rem;
+}
+
+.download-btn {
+    position: absolute;
+    right: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    font-size: 1.25rem;
+    font-weight: bold;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.22s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.download-btn:hover {
+    background: rgba(16, 185, 129, 0.3);
+    transform: translateY(-50%) scale(1.15);
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+}
+
+.download-btn:active {
+    transform: translateY(-50%) scale(0.96);
+}
+
+/* Optional: hide button when no hover (cleaner look on mobile) */
+@media (hover: hover) {
+    .download-btn {
+        opacity: 0.4;
+    }
+    .transaction-item:hover .download-btn {
+        opacity: 1;
+    }
+}

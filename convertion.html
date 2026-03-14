@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>esyPay</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="convertion.css">
+</head>
+
+<body>
+    <div id="section-1" class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="payment-card">
+            <div class="card-header-custom text-center">
+                <h2 style="view-transition-name: esypay-title;">esyPay</h2>
+                <p>Convert and Pay Instantly</p>
+            </div>
+
+            <div class="card-body-custom">
+                <div class="mb-4">
+                    <label for="inrAmount" class="form-label">Amount in INR</label>
+                    <div class="input-group">
+                        <span class="input-group-text">₹</span>
+                        <input type="text" id="inrAmount" class="form-control" placeholder="Enter INR Amount" inputmode="numeric">
+                        <button class="btn btn-outline-secondary" type="button" id="clearAmount">Clear</button>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="selectDropdown" class="form-label">SELECT CURRENCY</label>
+                    <select id="selectDropdown" class="form-control">
+                        <option value="">Select Currency</option>
+<option value="USD">$ - US Dollar (US)</option>
+<option value="EUR">€ - Euro (EU)</option>
+<option value="JPY">¥ - Japanese Yen (JP)</option>
+<option value="GBP">£ - British Pound (GB)</option>
+<option value="AUD">A$ - Australian Dollar (AU)</option>
+<option value="CAD">C$ - Canadian Dollar (CA)</option>
+<option value="CHF">Fr. - Swiss Franc (CH)</option>
+<option value="CNY">¥ - Chinese Yuan (CN)</option>
+<option value="HKD">HK$ - Hong Kong Dollar (HK)</option>
+<option value="NZD">$ - New Zealand Dollar (NZ)</option>
+<option value="SEK">kr - Swedish Krona (SE)</option>
+<option value="KRW">₩ - South Korean Won (KR)</option>
+<option value="SGD">S$ - Singapore Dollar (SG)</option>
+<option value="NOK">kr - Norwegian Krone (NO)</option>
+<option value="MXN">$ - Mexican Peso (MX)</option>
+<option value="INR">₹ - Indian Rupee (IN)</option>
+<option value="RUB">₽ - Russian Ruble (RU)</option>
+<option value="ZAR">R - South African Rand (ZA)</option>
+<option value="TRY">₺ - Turkish Lira (TR)</option>
+<option value="BRL">R$ - Brazilian Real (BR)</option>
+<option value="TWD">NT$ - New Taiwan Dollar (TW)</option>
+<option value="DKK">kr - Danish Krone (DK)</option>
+<option value="PLN">zł - Polish Zloty (PL)</option>
+<option value="THB">฿ - Thai Baht (TH)</option>
+<option value="IDR">Rp - Indonesian Rupiah (ID)</option>
+<option value="HUF">Ft - Hungarian Forint (HU)</option>
+<option value="CZK">Kč - Czech Koruna (CZ)</option>
+<option value="ILS">₪ - Israeli New Shekel (IL)</option>
+<option value="CLP">$ - Chilean Peso (CL)</option>
+<option value="PHP">₱ - Philippine Peso (PH)</option>
+<option value="AED">د.إ - UAE Dirham (AE)</option>
+<option value="COP">$ - Colombian Peso (CO)</option>
+<option value="SAR">﷼ - Saudi Riyal (SA)</option>
+<option value="MYR">RM - Malaysian Ringgit (MY)</option>
+<option value="RON">lei - Romanian Leu (RO)</option>
+<option value="VND">₫ - Vietnamese Dong (VN)</option>
+<option value="ARs">$ - Argentine Peso (AR)</option>
+<option value="EGP">£ - Egyptian Pound (EG)</option>
+<option value="KWD">د.ك - Kuwaiti Dinar (KW)</option>
+<option value="NGN">₦ - Nigerian Naira (NG)</option>
+<option value="PKR">₨ - Pakistani Rupee (PK)</option>
+<option value="IQD">ع.د - Iraqi Dinar (IQ)</option>
+<option value="UAH">₴ - Ukrainian Hryvnia (UA)</option>
+<option value="QAR">﷼ - Qatari Riyal (QA)</option>
+<option value="KZT">₸ - Kazakhstani Tenge (KZ)</option>
+<option value="BDT">৳ - Bangladeshi Taka (BD)</option>
+<option value="MAD">د.م. - Moroccan Dirham (MA)</option>
+<option value="PEN">S/. - Peruvian Sol (PE)</option>
+<option value="OMR">﷼ - Omani Rial (OM)</option>
+<option value="DZD">د.ج - Algerian Dinar (DZ)</option>
+                    </select>
+                </div>
+
+                <button id="convertButton" class="paymentButton B-2">
+                    Exchange Currency
+                </button>
+
+                <br />
+
+                <div class="mb-4">
+                    <label for="billAmount" class="form-label">Amount to pay</label>
+                    <div class="input-group">
+                        <span id="denomination" class="input-group-text"></span>
+                        <span class="input-group-text bg-white border-end-0">≈</span>
+                        <input type="text" id="billAmount" class="form-control" placeholder="Converted Amount to pay" readonly>
+                    </div>
+                </div>
+
+                <button id="payBtn" onclick="proceedToPayment()" class="paymentButton B-1" disabled>
+                    Proceed with Payment
+                </button>
+                <button class="paymentButton B-1" onclick="navigateWithTransition('history.html')" id="back">
+                    view transaction history
+                </button> 
+            </div>
+        </div>
+    </div>
+
+    <script src="convertion.js"></script>
+    <script src="transitions.js"></script>
+</body>
+</html>
